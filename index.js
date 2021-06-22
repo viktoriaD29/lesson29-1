@@ -6,7 +6,7 @@ export const addImage = (imgSrc, callback) => {
   imgElem.src = imgSrc;
   const onImageLoaded = () => {
     const { width, height } = imgElem;
-    callback(null, imgElem);
+    callback(null, { width, height });
   };
   imgElem.addEventListener('load', onImageLoaded);
   imgElem.addEventListener('error', () => callback('Image load is failed...'));
