@@ -1,9 +1,9 @@
 export const addImage = (imgSrc, callback) => {
+  const container = document.querySelector('.page');
   const imgElem = document.createElement('img');
-  imgElem.setAttribute('alt', 'My Photo');
+  container.append(imgElem);
+  imgElem.setAttribute('alt', 'My photo');
   imgElem.src = imgSrc;
-  const containerElem = document.querySelector('.page');
-  containerElem.append(imgElem);
 
   const onImageLoaded = () => {
     const { width, height } = imgElem;
@@ -11,12 +11,9 @@ export const addImage = (imgSrc, callback) => {
   };
 
   imgElem.addEventListener('load', onImageLoaded);
-
   imgElem.addEventListener('error', () => callback('Image load is failed...'));
 };
 
-
-//callack example
 const onImageLoaded = (error, data) => {
   if (error) {
     console.log(error);
@@ -27,8 +24,7 @@ const onImageLoaded = (error, data) => {
   sizeElem.textContent = `${width} x ${height}`;
 };
 
-//test call
-addImage(
-   'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg',
-  onImageLoaded
-);
+const imgSrc =
+  'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg';
+
+addImage(imgSrc, onImageLoaded);
